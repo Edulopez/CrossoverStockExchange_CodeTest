@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetAllStock">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllStockResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllStockResult" type="tns:ArrayOfPlainStock" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPlainStock">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PlainStock" nillable="true" type="tns:PlainStock" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PlainStock">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllStockByCodeList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="stockCodes" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllStockByCodeListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllStockByCodeListResult" type="tns:ArrayOfPlainStock" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllStockByUserId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllStockByUserIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllStockByUserIdResult" type="tns:ArrayOfPlainStock" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetAllStockSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllStock" />
+  </wsdl:message>
+  <wsdl:message name="GetAllStockSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllStockResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllStockByCodeListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllStockByCodeList" />
+  </wsdl:message>
+  <wsdl:message name="GetAllStockByCodeListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllStockByCodeListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllStockByUserIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllStockByUserId" />
+  </wsdl:message>
+  <wsdl:message name="GetAllStockByUserIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllStockByUserIdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="StockExchangeWebServiceSoap">
+    <wsdl:operation name="GetAllStock">
+      <wsdl:input message="tns:GetAllStockSoapIn" />
+      <wsdl:output message="tns:GetAllStockSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllStockByCodeList">
+      <wsdl:input message="tns:GetAllStockByCodeListSoapIn" />
+      <wsdl:output message="tns:GetAllStockByCodeListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllStockByUserId">
+      <wsdl:input message="tns:GetAllStockByUserIdSoapIn" />
+      <wsdl:output message="tns:GetAllStockByUserIdSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="StockExchangeWebServiceSoap" type="tns:StockExchangeWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllStock">
+      <soap:operation soapAction="http://tempuri.org/GetAllStock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllStockByCodeList">
+      <soap:operation soapAction="http://tempuri.org/GetAllStockByCodeList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllStockByUserId">
+      <soap:operation soapAction="http://tempuri.org/GetAllStockByUserId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="StockExchangeWebServiceSoap12" type="tns:StockExchangeWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllStock">
+      <soap12:operation soapAction="http://tempuri.org/GetAllStock" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllStockByCodeList">
+      <soap12:operation soapAction="http://tempuri.org/GetAllStockByCodeList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllStockByUserId">
+      <soap12:operation soapAction="http://tempuri.org/GetAllStockByUserId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="StockExchangeWebService">
+    <wsdl:port name="StockExchangeWebServiceSoap" binding="tns:StockExchangeWebServiceSoap">
+      <soap:address location="http://localhost:62776/StockExchangeWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="StockExchangeWebServiceSoap12" binding="tns:StockExchangeWebServiceSoap12">
+      <soap12:address location="http://localhost:62776/StockExchangeWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

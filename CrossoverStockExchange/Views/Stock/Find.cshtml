@@ -1,0 +1,71 @@
+﻿@model  CrossoverStockExchange.Models.StockViewModels.Find
+
+@{
+    ViewBag.Title = "Find";
+}
+
+<h2>Find</h2>
+
+<div>
+    @using (Html.BeginForm())
+    {
+        <table>
+            <tr>
+                <td>
+                    @Html.LabelFor(item => Model.Code)
+                </td>
+                <td>
+                    @Html.EditorFor(item => Model.Code)
+                    @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+        </table>
+        <div class="form-group">
+            <div class="">
+                <input type="submit" value="Find" class="btn btn-default" />
+            </div>
+        </div>
+    }
+
+    @if (Model != null && Model.stock != null)
+    {
+        <div>
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.LabelFor(Stock => Model.stock.Id)
+                        </th>
+                        <th>
+                            @Html.LabelFor(Stock => Model.stock.Code)
+                        </th>
+                        <th>
+                            @Html.LabelFor(Stock => Model.stock.Price)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(Stock => Model.stock.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(Stock => Model.stock.Code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(Stock => Model.stock.Price)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Add to my list", "Add", new { id = Model.stock.Id })
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    }
+</div>
+
